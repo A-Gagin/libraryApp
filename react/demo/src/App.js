@@ -1,6 +1,7 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import Search from "./SearchPage/Search";
+import Library from "./LibraryPage/Library"
 
 
 
@@ -21,6 +22,8 @@ function App() {
     <div className="App">
       <button onClick={print}>Get Data</button>
       <Search></Search>
+      <Library></Library>
+
     </div>
   );
 }

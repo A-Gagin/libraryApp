@@ -37,9 +37,9 @@ app.get('/google/get', async (req, res) => {
                     console.log("Oops.")
                 }
             });
-})
+});
 
-//add to library
+//add a book to library
 app.post("/books/add", async (req, res) => {
     const { title, author } = req.body;
 
@@ -48,6 +48,20 @@ app.post("/books/add", async (req, res) => {
         author,
     });
     console.log("Added document with ID: ", resp.id);
+    res.sendStatus(200);
+});
+
+//delete a book by document id
+app.delete("/books/delete", async (req, res) => {
+    const { id } = req.body;
+    const batch = db.batch();
+    const idRef = db.collection('books').doc(id);
+
+    batch.delete(idRef);
+
+    await batch.commit();
+
+    console.log("Deleted: ", id);
     res.sendStatus(200);
 });
 
