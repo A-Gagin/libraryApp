@@ -1,6 +1,10 @@
+import { useState } from "react";
 function SearchBooks(props) {
+    const [searchTerm, setSearchTerm] = useState("");
     const url = new URL("http://localhost:8080/google/get");
-    url.searchParams.append("title", props.searchTerm);
+    url.searchParams.append("title", searchTerm);
+
+    
 
     function call() {
         fetch(url)
@@ -22,10 +26,11 @@ function SearchBooks(props) {
 
     function getBooks() {
         call();
+        //console.log(props.books)
     }
 
     const handleTitleSearch = (e) => {
-        props.setSearchTerm(e.target.value);
+        setSearchTerm(e.target.value);
     }
 
     return (

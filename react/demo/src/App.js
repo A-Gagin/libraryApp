@@ -1,28 +1,18 @@
 import './App.css';
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import Search from "./SearchPage/Search";
-import Library from "./LibraryPage/Library"
+//import Library from "./LibraryPage/Library"
 
 
 
 function App() {
   const [books, setBooks] = useState([])
-
-  useEffect(() => {
-    fetch("http://localhost:8080/books/get")
-    .then((res) => res.json())
-    .then((res) => setBooks(res));
-  }, []);
-
-  function print (){
-    console.log(books);
-  }
+  //const [library, setLibrary] = useState([])
   
   return (
     <div className="App">
-      <button onClick={print}>Get Data</button>
-      <Search></Search>
-      <Library></Library>
+      <Search books={books} setBooks={setBooks} />
+      {/* <Library library={library} setLibrary={setLibrary}/> */}
 
     </div>
   );

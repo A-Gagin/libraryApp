@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, {  } from 'react';
 import SearchBooks from './SearchBooks';
 import DisplayGoogleBooks from './DisplayGoogleBooks'
 
 
 
-function Search() {
-    const [books, setBooks] = useState([])
-    const [searchTerm, setSearchTerm] = useState("");
+function Search(props) {
+    //const [books, setBooks] = useState([])
+    // const [searchTerm, setSearchTerm] = useState("");
 
-    console.log("API BOOKS", books);
+    console.log("API BOOKS", props.books);
 
 
     return (
         <div>
-            <SearchBooks searchTerm={searchTerm} setBooks={setBooks} setSearchTerm={setSearchTerm}/>
-            <DisplayGoogleBooks books={books}/>
+            <SearchBooks setBooks={props.setBooks}/>
+            <DisplayGoogleBooks books={props.books}/>
         </div>
     );
 }

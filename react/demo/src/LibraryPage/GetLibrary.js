@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-
+const url = new URL("http://localhost:8080/books/get");
 function SearchBooks(props) { // needs SetLibrary
-    const url = new URL("http://localhost:8080/books/get");
+    
     useEffect(() => {
         fetch(url)
         .then((res) =>{
@@ -16,9 +16,7 @@ function SearchBooks(props) { // needs SetLibrary
                 props.setLibrary(obj);
             }
         })
-            
-
-    })
+    },[props]);
 
     return null;
 }
