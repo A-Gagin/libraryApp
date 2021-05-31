@@ -24,6 +24,7 @@ function DisplayGoogleBooks(props) {
       })(Button);
 
     //currently adds a null object to database... fetch is passing an empty body no matter what I do.
+    //resolved! had to add the JSON.stringify and Accept parts.
     const add = (title, author) => e => {
         console.log("add onClick", title, author);
         if (title != null) {
