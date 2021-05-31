@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Typography, Button } from "@material-ui/core";
 import { withStyles } from '@material-ui/core/styles';
 
@@ -6,8 +5,8 @@ function DisplayGoogleBooks(props) {
     console.log("DisplayGoogleBooks", props.books);
 
     const url = new URL("http://localhost:8080/books/add");
-    const [title, setTitle] = useState("Defacto");
-    const [author, setAuthor] = useState("People");
+    // const [title, setTitle] = useState("Default Title");
+    // const [author, setAuthor] = useState("Default Author");
 
     const StyledButton = withStyles({
         root: {
@@ -25,18 +24,16 @@ function DisplayGoogleBooks(props) {
       })(Button);
 
     //currently adds a null object to database... fetch is passing an empty body no matter what I do.
-    const add = () => {
+    const add = (title, author) => e => {
         console.log("add onClick", title, author);
         if (title != null) {
-            let book = { author: author, title: title };
-            console.log("adding book:", book);
 
-            fetch(url, { method: 'POST', body: { book }, headers: { "Content-Type": "application/json" } })
+            fetch(url, { method: 'POST', headers: { "Accept": "application/json", "Content-Type": "application/json", },  body: JSON.stringify({ "title": title, "author": author }) })
                 // .then((res) => {
                 //     return res.json();
                 // })
                 .then((obj) => {
-                    console.log("fetch book", book);
+                    console.log("fetch book", title, author);
                     console.log(obj);
                 })
         } else {
@@ -54,12 +51,8 @@ function DisplayGoogleBooks(props) {
                                 {book.volumeInfo.imageLinks != null ? <img src={book.volumeInfo.imageLinks.thumbnail} alt="Cover" /> : "Cover not found."}<br />
                                 <Typography variant="h5">{book.volumeInfo.title}</Typography>
                                 <Typography variant="h6">{book.volumeInfo.authors != null ? book.volumeInfo.authors[0] : "Author not found."}</Typography>
-                                {/* {setTitle(book.volumeInfo.title)}
-                                {setAuthor(book.volumeInfo.authors != null ? book.volumeInfo.authors[0] : "Author not found.")} */}
-                                {/* Have to handle for null authors because apparently that's a thing that can happen... */}
-                                {/* <button onClick={add}>Add to Library</button> Doesn't currently do anything */}
                                 <br />
-                                <StyledButton onClick={add} >Add to Library</StyledButton>
+                                <StyledButton onClick={add(book.volumeInfo.title, book.volumeInfo.authors != null ? book.volumeInfo.authors[0] : "Author not found.")} >Add to Library</StyledButton>
                             </div>
                             <br />
                         </div>

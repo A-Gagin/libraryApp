@@ -24,7 +24,8 @@ function App() {
       <Search />
 
       <div style={{ backgroundColor: "#fadfca", width: "50%", marginLeft: "auto", marginRight: "auto", padding: "10px", borderRadius: "15px" }}>
-        <Typography variant={"h3"}>Library</Typography>
+        <Typography variant={"h3"}>Library</Typography> <br />
+        <Typography variant={"h5"}>Reload to see Updates</Typography>
       </div>
       <br />
       <Library />

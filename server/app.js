@@ -72,30 +72,31 @@ app.post("/books/add", async (req, res) => {
 });
 
 // delete a book by document id
-// app.delete("/books/delete", async (req, res) => {
-//     console.log(req.body); //when req.body is empty there are problems
-//     let id = req.body;
-//     if (req.body == null){
-//         id = "string";
-//     }
-//     console.log("ID Type: ", typeof id);
-//     const batch = db.batch();
-//     const idRef = db.collection('books').doc(id); //possibly causing a problem?
+app.delete("/books/delete", async (req, res) => {
+    console.log(req.body); //when req.body is empty there are problems
+    let id = req.body;
+    if (req.body == null){
+        id = "string";
+    }
+    console.log("ID Type: ", typeof id);
+    console.log("ID literal", id);
+    const batch = db.batch();
+    const idRef = db.collection('books').doc(id.id); //possibly causing a problem?
 
-//     try {
-//         batch.delete(idRef);
+    try {
+        batch.delete(idRef);
 
-//         await batch.commit();
+        await batch.commit();
     
-//         console.log("Deleted: ", id);
-//         res.sendStatus(200);
+        console.log("Deleted: ", id);
+        res.sendStatus(200);
         
-//     } catch (error) {
-//         console.log("ERROR!:", error);
-//     }
+    } catch (error) {
+        console.log("ERROR!:", error);
+    }
 
 
-// });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

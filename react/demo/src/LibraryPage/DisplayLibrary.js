@@ -20,14 +20,14 @@ function DisplayLibrary(props) {
 
     const url = new URL("http://localhost:8080/books/delete");
 
-    const remove = (bookID) => {
+    const remove = (bookID) => e => {
         let id = bookID;
         console.log(typeof id);
         console.log("removing id:", id);
         if (typeof id != "string") {
             id = "string";
         }
-        fetch(url, { method: 'DELETE', body: id })
+        fetch(url, { method: 'DELETE', headers: { "Accept": "application/json", "Content-Type": "application/json", },  body: JSON.stringify({ "id": id }) })
             // .then((res) => {
             //     return res.json();
             // })
