@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 const url = new URL("http://localhost:8080/books/get");
-function SearchBooks(props) { // needs SetLibrary
+function GetLibrary(props) { // needs SetLibrary
     const setLibrary = props.setLibrary;
 
     useEffect(() => {
@@ -22,4 +22,4 @@ function SearchBooks(props) { // needs SetLibrary
     return null;
 }
 
-export default SearchBooks;
+export default GetLibrary;
