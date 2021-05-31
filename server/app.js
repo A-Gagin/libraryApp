@@ -56,11 +56,12 @@ app.get('/google/get', async (req, res) => {
 //add a book to library
 app.post("/books/add", async (req, res) => {
     console.log(req.body);
-    const { title, author } = req.body;
+    const { title, author, image } = req.body;
     try {
         const resp = await db.collection("books").add({
             title,
             author,
+            image,
         });
         console.log("Added document with ID: ", resp.id);
         res.sendStatus(200);

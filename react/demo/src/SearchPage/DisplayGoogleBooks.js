@@ -10,26 +10,26 @@ function DisplayGoogleBooks(props) {
 
     const StyledButton = withStyles({
         root: {
-          background: 'linear-gradient(45deg, #ba7e5d 30%, #936639 90%)',
-          borderRadius: 3,
-          border: 0,
-          color: 'white',
-          height: 48,
-          padding: '0 30px',
-          boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+            background: 'linear-gradient(45deg, #ba7e5d 30%, #936639 90%)',
+            borderRadius: 3,
+            border: 0,
+            color: 'white',
+            height: 48,
+            padding: '0 30px',
+            boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         },
         label: {
-          //textTransform: 'capitalize',
+            //textTransform: 'capitalize',
         },
-      })(Button);
+    })(Button);
 
     //currently adds a null object to database... fetch is passing an empty body no matter what I do.
     //resolved! had to add the JSON.stringify and Accept parts.
-    const add = (title, author) => e => {
-        console.log("add onClick", title, author);
+    const add = (title, author, image) => e => {
+        console.log("add onClick", title, author, image);
         if (title != null) {
 
-            fetch(url, { method: 'POST', headers: { "Accept": "application/json", "Content-Type": "application/json", },  body: JSON.stringify({ "title": title, "author": author }) })
+            fetch(url, { method: 'POST', headers: { "Accept": "application/json", "Content-Type": "application/json", }, body: JSON.stringify({ "title": title, "author": author, "image": image}) })
                 // .then((res) => {
                 //     return res.json();
                 // })
@@ -44,7 +44,7 @@ function DisplayGoogleBooks(props) {
     };
     if (props.books != null) {
         return (
-            <div style={{ padding: "10px", height: "360px", marginLeft:"17px", overflowY: "scroll" }}>
+            <div style={{ padding: "10px", height: "360px", marginLeft: "17px", overflowY: "scroll" }}>
                 {
                     props.books.map((book) => (
                         <div>
@@ -53,7 +53,12 @@ function DisplayGoogleBooks(props) {
                                 <Typography variant="h5">{book.volumeInfo.title}</Typography>
                                 <Typography variant="h6">{book.volumeInfo.authors != null ? book.volumeInfo.authors[0] : "Author not found."}</Typography>
                                 <br />
-                                <StyledButton onClick={add(book.volumeInfo.title, book.volumeInfo.authors != null ? book.volumeInfo.authors[0] : "Author not found.")} >Add to Library</StyledButton>
+                                <StyledButton onClick={add(
+                                    book.volumeInfo.title,
+                                    book.volumeInfo.authors != null ? book.volumeInfo.authors[0] : "Author not found.",
+                                    book.volumeInfo.imageLinks != null ? book.volumeInfo.imageLinks.thumbnail : "https://img-premium.flaticon.com/png/512/1178/1178428.png?token=exp=1622443658~hmac=3e2be4c05df17924d62aeb20d3d1061f")} >
+                                    Add to Library
+                                </StyledButton>
                             </div>
                             <br />
                         </div>

@@ -42,6 +42,7 @@ function DisplayLibrary(props) {
                 props.library.map((book) => (
                     <div>
                         <div style={{ backgroundColor: "#fadfca", width: "20%", marginLeft: "auto", marginRight: "auto", padding: "10px", borderRadius: "15px" }}>
+                            <img src={book.image} alt="Cover" height="100px" width="100px"/>
                             <Typography variant="h5">{book.title}</Typography>
                             <Typography variant="h6">{book.author}</Typography> <br />
                             {console.log(book.id)}
