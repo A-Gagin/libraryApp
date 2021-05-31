@@ -37,7 +37,7 @@ function DisplayLibrary(props) {
     }
 
     return (
-        <div style={{ padding: "10px" }}>
+        <div style={{ padding: "10px", height: "440px", overflowY: "scroll" }}>
             {
                 props.library.map((book) => (
                     <div>

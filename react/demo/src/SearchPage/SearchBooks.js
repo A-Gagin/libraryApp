@@ -66,6 +66,7 @@ function SearchBooks(props) {
         <div style={{ backgroundColor: "#fadfca", width: "20%", marginLeft: "auto", marginRight: "auto", padding: "10px", borderRadius: "15px" }}>
             {/* <input onChange={handleTitleSearch} /> */}
             {/* <button onClick={getBooks}>Get Books</button> */}
+            
             <form className={classes.root} noValidate autoComplete="off">
                 <div>
                     <TextField id="outlined-search" label="Book Title" type="search" variant="outlined" onChange={handleTitleSearch} />
