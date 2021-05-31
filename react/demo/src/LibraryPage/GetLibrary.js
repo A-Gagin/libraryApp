@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 const url = new URL("http://localhost:8080/books/get");
 function SearchBooks(props) { // needs SetLibrary
-    
+    const setLibrary = props.setLibrary;
+
     useEffect(() => {
         fetch(url)
         .then((res) =>{
@@ -13,10 +14,10 @@ function SearchBooks(props) { // needs SetLibrary
                 if (obj.length === 0){
                     obj = [{title: "Book not found.", author: "", id: ""}];
                 }
-                props.setLibrary(obj);
+                setLibrary(obj);
             }
         })
-    },[props]);
+    },[setLibrary]); //originally had props in the dependency array to get rid of an error. However, this caused infinite re-rendering.
 
     return null;
 }

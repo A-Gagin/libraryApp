@@ -1,9 +1,10 @@
-//import { useEffect } from "react";
+//import { useEffect } from "react"; THIS CODE CURRENTLY UNUSED
 
 function DeleteBook(props) { // needs id
     const url = new URL("http://localhost:8080/books/delete");
 
     function remove(bookID){
+        
         fetch(url, {method: 'DELETE', body: bookID})
         .then((res) => {
             return res.json();
