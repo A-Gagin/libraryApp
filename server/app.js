@@ -17,6 +17,7 @@ app.use(function(req, res, next) {
 
 //get library
 app.get('/books/get', async (req, res) => {
+    console.log("fetching library...")
   const snapshot = await db.collection("books").get();
   
   const books = [];
